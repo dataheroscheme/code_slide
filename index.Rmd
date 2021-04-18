@@ -1,0 +1,311 @@
+---
+title: "Introduction to Data Hero Scheme"
+subtitle: "A vaccination to your career"
+author: 
+  - "Dr Lawrence Ning Lu(Lead), Katrina Choi(TA), Mais Khader(TA)"
+institute: "University of Leeds"
+date: "2021/04/11"
+output:
+  xaringan::moon_reader:
+    css: 
+      - default
+      - css/hero.css
+      - css/hero-fonts.css
+      - "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: googlecode
+      highlightLines: true
+      highlightLanguage: ["r"]
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      after_body: [css/insert-logo.html]
+---
+
+```{r setup, include = FALSE}
+pacman::p_load("tidyverse", "knitr", "icons", "NHSRdatasets")
+xaringanExtra::use_panelset()
+
+# set default options
+opts_chunk$set(echo = FALSE,
+               fig.width = 7.252,
+               fig.height = 4,
+               dpi = 300)
+
+# uncomment the following lines if you want to use the NHS-R theme colours by default
+# scale_fill_continuous <- partial(scale_fill_nhs, discrete = FALSE)
+# scale_fill_discrete <- partial(scale_fill_nhs, discrete = TRUE)
+# scale_colour_continuous <- partial(scale_colour_nhs, discrete = FALSE)
+# scale_colour_discrete <- partial(scale_colour_nhs, discrete = TRUE)
+```
+
+class: title-slide, left, bottom
+
+# `r rmarkdown::metadata$title`
+
+----
+
+## **`r rmarkdown::metadata$subtitle`**
+### `r rmarkdown::metadata$author`
+### `r rmarkdown::metadata$date`
+
+---
+
+class: inverse, center, middle, animated, slideInRight
+
+# Finding a job is never easy.
+
+---
+
+# Challenges
+
+.panelset[
+
+.panel[.panel-name[CV]
+### Improvement needed: 95% of CV submitted to Data Hero Scheme
+
+* No Photo
+* Relevant experience > relevant degree
+* Relevant degree > irrelevant experience
+* No degree can still have a shot
+* Hobby is irrelevant
+* Skills and projects are kings and queens
+
+> "What can you do for the company?"
+</br>
+> "Can you do the job? Don't tell me; show me."
+
+]
+
+.panel[.panel-name[University degree]
+### Degree: Panacea?
+
+* Undergraduate
+* Postgraduate
+* PhD
+* Postdoc
+* Another degree?
+]
+
+.panel[.panel-name[Internship]
+### Internship: Relevant?
+
+* Placement (1-year)
+* Summer
+* Part-time
+* Volunteer
+
+> Can someone trust you on the job you wish to do?
+
+]
+
+.panel[.panel-name[Job awareness]
+### Where to look for jobs?
+
+* Where is the job?
+]
+
+.panel[.panel-name[Job application]
+### Are you prepared (I)?
+* CV
+* Cover letter / email
+* Coding skill and project experience
+* Referees
+]
+
+.panel[.panel-name[Interview]
+### Are you prepared (II)?
+* Lack of interview experience
+]
+
+]
+
+.footnote[It's about your mentality and Q&A.]
+
+---
+
+
+# Solutions - Data Hero Scheme
+
+
+.panelset[
+
+.panel[.panel-name[Data Science career talk]
+### Share job hunting and career insight and experience
+
+- former members
+- industry friends
+- data people
+
+### So far, we have done two: 
+
+- Ausrine, Amazon
+- Lu, London Stock Exchange Group
+
+]
+
+.panel[.panel-name[Data Science training]
+### Coding components
+- Git, Markdown, HTML/CSS
+- Tableau / PowerBI
+- SQL
+- Python and R
+- Julia
+
+### Data components
+- Programmatic Presentation
+- Data visualisation
+- Data intelligence
+- Data mining
+- Data analytics
+
+]
+
+.panel[.panel-name[Data Hero Projects]
+### Supporting business and public sectors
+- Doing some data things for people 
+]
+
+]
+
+.footnote[
+[1] Discipline = Freedom; 10,000 hours = life freedom? 
+]
+
+
+---
+
+
+class: inverse, middle, animated, bounceInDown
+
+# It's programmatic slide again!
+
+----
+
+.pull-left[
+
+By doing the presentation on Data Hero Scheme, you have been exposed to programmatic presentation again! This is how some of the pro data scientists do their presentation! 
+
+]<!--end of left-column-->
+
+.pull-right[
+.left[
+1\. [Challenges](#bulletpoints)
+
+2\. [Solutions](#tables-quotes)
+
+3\. [Remind you again - Programmatic Presentation](#line-highlighting)
+
+4\. [Other cool elements](#goodbye)
+]
+] <!--end of right-column-->
+
+---
+
+class: middle, animated, swing
+
+name: tables-quotes
+# Tables and quotes
+
+### Table
+.pull-left[
+
+`NHSRDatasets::LOS_model`
+
+Artificially generated hospital data. Fictional patients at 10 fictional hospitals, with `LOS`, `Age` and `Date status` data. 
+
+Data were generated to learn Generalized Linear Models (GLM) concepts, modelling either `Death` or `LOS`.
+]
+
+.pull-right[
+```{r}
+knitr::kable(head(LOS_model), format = 'html')
+```
+]
+
+--
+
+### Quote
+
+> This is a NHS dataset. 
+
+---
+
+name: line-highlighting
+
+# Code highlighting
+
+`This is what inline code looks like highlighted within text`
+
+Lines within code chunks can be highlighted using the trailing comment `#<<`, as seen below:
+
+### Code
+
+````markdown
+`r ''````{r}
+NHSRdatasets::LOS_model %>%
+  ggplot(aes(x = Age, y = Organisation)) +
+  geom_boxplot(aes(fill = Organisation)) +    #<<
+  nhsrtheme::scale_fill_nhs("highlights")     #<<
+```
+````
+
+### Output
+
+```{r eval=FALSE, echo=TRUE}
+NHSRdatasets::LOS_model %>%
+  ggplot(aes(x = Age, y = Organisation)) +
+  geom_boxplot(aes(fill = Organisation)) +    #<<
+  nhsrtheme::scale_fill_nhs("highlights")     #<<
+```
+
+---
+
+class: center, middle, animated, swing
+
+# A quote is about left and right
+
+.left["Don’t expect to be motivated every day to get out there and make things happen. You won’t be. Don’t count on motivation. Count on Discipline."]
+
+.right[ --- Jocko Willink, a formal US SEAL Team Lead]
+
+---
+
+# Placement
+
+.pull-left[
+![](https://media.giphy.com/media/UJ5I7921pAOEU/source.gif)
+]
+
+.pull-right[
+![](https://media.giphy.com/media/3o7abJW5ZuiByDelji/source.gif)
+]
+
+
+---
+
+name: goodbye
+class: middle, inverse, animated, zoomIn
+
+.pull-left[
+# **Thank you!**
+<br/>
+## Hero-Lab
+
+### Leeds Data Science Society 
+
+#### Promoting Data Science Education in the UK
+]
+
+.pull-right[
+.right[
+<img src="https://media.giphy.com/media/IT2rEKreqAKFfJfpv2/giphy.gif" width="1280px"/>
+
+
+[`r icons::fontawesome("link")` leedsdatascience.com](https://leedsdatascience.com/)<br/>
+[`r icons::fontawesome("twitter")` @leedsdatasoc](https://twitter.com/leedsdatasoc)<br/>
+]
+]
+
